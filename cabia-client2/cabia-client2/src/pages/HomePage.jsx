@@ -43,6 +43,27 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  {[
+    { number: '120+', label: 'Tracks Produced' },
+    { number: '50+', label: 'Artists Worked With' },
+    { number: '10', label: 'Studio Spaces' },
+    { number: '24/7', label: 'Creative Flow' },
+  ].map((item) => (
+    <div
+      key={item.label}
+      className="rounded-3xl border border-white/10 bg-white/5 p-6"
+    >
+      <p className="text-3xl font-bold text-red-500">
+        {item.number}
+      </p>
+      <p className="mt-2 text-sm text-white/70">
+        {item.label}
+      </p>
+    </div>
+  ))}
+</section>
+
       <section className="grid gap-4 md:grid-cols-3">
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
           <h3 className="text-xl font-bold text-white">Recording</h3>
