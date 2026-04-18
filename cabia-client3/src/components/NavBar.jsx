@@ -23,6 +23,12 @@ function NavBar() {
           >
             Articles
           </Link>
+          <Link
+            className={isActive('/signin') ? 'nav-link active' : 'nav-link'}
+            to="/signin"
+          >
+            Sign In
+          </Link>
         </nav>
       </div>
     </header>
