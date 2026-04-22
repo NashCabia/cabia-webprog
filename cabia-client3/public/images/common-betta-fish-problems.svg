@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Health problems illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#1f123d"/>
+    </linearGradient>
+    <linearGradient id="warn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fda4af"/>
+      <stop offset="0.55" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- abstract fish with "stress" streak -->
+  <path d="M460 500c190-190 480-190 670 0-190 190-480 190-670 0Z" fill="#111827" opacity="0.75"/>
+  <path d="M500 500c160-150 400-150 560 0-160 150-400 150-560 0Z" fill="url(#warn)" opacity="0.85"/>
+
+  <!-- warning marks -->
+  <g opacity="0.85">
+    <path d="M1160 290l90 160h-180l90-160Z" fill="#0b1020" stroke="#c4b5fd" stroke-width="6"/>
+    <rect x="1148" y="350" width="24" height="58" rx="12" fill="#c4b5fd"/>
+    <circle cx="1160" cy="430" r="14" fill="#c4b5fd"/>
+  </g>
+
+  <!-- bubbles -->
+  <g opacity="0.55">
+    <circle cx="360" cy="280" r="10" fill="#c4b5fd"/>
+    <circle cx="410" cy="330" r="6" fill="#a78bfa"/>
+    <circle cx="460" cy="260" r="7" fill="#22d3ee"/>
+  </g>
+</svg>

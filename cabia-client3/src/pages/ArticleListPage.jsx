@@ -7,10 +7,10 @@ const ArticleListPage = () => {
     <div className="page">
       <section className="section-card">
         <p className="eyebrow">Articles</p>
-        <h1 className="page-title">Featured articles in a simple card grid</h1>
+        <h1 className="page-title">Betta fish guides and tips</h1>
         <p className="page-description">
-          A clean article section for article thumbnails, titles, short
-          descriptions, and one clear action per card.
+          Browse quick reads on betta care: tank setup, feeding routines, and
+          spotting common health issues early.
         </p>
 
         <div className="button-row">

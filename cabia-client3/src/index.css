@@ -1,5 +1,15 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+
+  --bg: #0b1020;
+  --surface: #0f172a;
+  --surface-2: #111827;
+  --text: #e5e7eb;
+  --muted: #a1a1aa;
+  --border: #2a2f45;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-soft: #2e1065;
 }
 
 html {

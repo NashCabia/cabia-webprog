@@ -5,10 +5,10 @@ function HomePage() {
     <div className="page">
       <section className="hero-section">
         <p className="eyebrow">Welcome</p>
-        <h1 className="page-title">React Article Website</h1>
+        <h1 className="page-title">Betta Blog</h1>
         <p className="page-description">
-          This project demonstrates reusable components, routing, dynamic article
-          pages, and a custom not found page.
+          Learn the basics of betta fish care — tank setup, feeding, health
+          checks, and common mistakes — with short, beginner-friendly articles.
         </p>
 
         <div className="button-row">

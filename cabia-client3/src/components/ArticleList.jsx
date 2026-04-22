@@ -7,7 +7,16 @@ const ArticleList = ({ articles }) => {
       {articles.map((article, index) => (
         <article key={article.name} className="article-card">
           <div className="article-card-image">
-            <div className="image-placeholder" />
+            {article.thumbnail ? (
+              <img
+                className="article-image"
+                src={article.thumbnail}
+                alt={article.thumbnailAlt ?? `${article.title} thumbnail`}
+                loading="lazy"
+              />
+            ) : (
+              <div className="image-placeholder" />
+            )}
           </div>
 
           <p className="article-number">

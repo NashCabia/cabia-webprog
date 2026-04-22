@@ -7,13 +7,13 @@ function AboutPage() {
         <p className="eyebrow">About</p>
         <h1 className="page-title">About This Project</h1>
         <p className="page-description">
-          This website was built using React and React Router. It shows how
-          components can be reused to create a clean and organized project
-          structure.
+          Betta Blog is a small article site focused on beginner-friendly betta
+          fish care. The goal is to make the basics easy to understand — from
+          tank setup and feeding to spotting common health issues.
         </p>
         <p className="page-description">
-          The application includes navigation, an article list, dynamic article
-          pages, and a fallback page for invalid routes.
+          Each article is organized into short sections with images so you can
+          skim quickly and still get practical, helpful tips.
         </p>
 
         <div className="button-row">
