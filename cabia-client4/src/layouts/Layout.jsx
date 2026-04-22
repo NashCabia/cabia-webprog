@@ -4,15 +4,13 @@ import Footer from '../components/Footer';
 
 const Layout = () => {
   return (
-    <>
+    <div className="site-wrapper">
       <NavBar />
       <main className="main-content">
-        <div className="page-shell">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

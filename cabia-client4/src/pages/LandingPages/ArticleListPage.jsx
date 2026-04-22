@@ -1,15 +1,30 @@
-import { articles } from '../../assets/article-content';
 import ArticleList from '../../components/ArticleList';
+import Button from '../../components/Button';
+import articles from '../../assets/article-content';
 
 const ArticleListPage = () => {
   return (
-    <section>
-      <div className="page-heading">
-        <h1>Article List</h1>
-        <p>Browse the sample articles below. Each article uses the same page template through a dynamic route.</p>
-      </div>
-      <ArticleList articles={articles} />
-    </section>
+    <div className="page">
+      <section className="section-card">
+        <p className="eyebrow">Articles</p>
+        <h1 className="page-title">Betta fish guides and tips</h1>
+        <p className="page-description">
+          Browse quick reads on betta care: tank setup, feeding routines, and spotting common health issues early.
+        </p>
+
+        <div className="button-row">
+          <Button to="/">Back Home</Button>
+        </div>
+      </section>
+
+      <section className="section-card">
+        <div className="section-header">
+          <p className="eyebrow">Featured Articles</p>
+          <h2 className="section-title">Article card grid</h2>
+        </div>
+        <ArticleList articles={articles} />
+      </section>
+    </div>
   );
 };
 

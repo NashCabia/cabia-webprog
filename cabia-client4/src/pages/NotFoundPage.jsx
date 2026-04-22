@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
 const NotFoundPage = () => {
   return (
-    <section className="not-found">
-      <div className="not-found-box">
-        <h1>404 - Page Not Found</h1>
-        <p className="subtext" style={{ marginTop: '0.8rem', marginBottom: '1.2rem' }}>
-          The page you are looking for does not exist or may have been moved.
+    <div className="page">
+      <section className="notfound-box">
+        <div className="notfound-code">404</div>
+        <h1 className="page-title">Page Not Found</h1>
+        <p className="page-description">
+          The page you are trying to access does not exist or the link may be broken.
         </p>
-        <Link to="/"><Button>Back to Home</Button></Link>
-      </div>
-    </section>
+        <div className="button-row">
+          <Button to="/">Go Home</Button>
+          <Button to="/articles" variant="secondary">
+            View Articles
+          </Button>
+        </div>
+      </section>
+    </div>
   );
 };
 

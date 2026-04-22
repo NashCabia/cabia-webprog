@@ -1,29 +1,23 @@
+import Button from '../../components/Button';
+
 const AboutPage = () => {
   return (
-    <section>
-      <div className="page-heading">
-        <h1>About This Project</h1>
-        <p>
-          This project is a sample React application for Lab Activity 4. It focuses on navigation,
-          route handling, component reusability, and improved design for authentication pages.
+    <div className="page">
+      <section className="section-card">
+        <p className="eyebrow">About</p>
+        <h1 className="page-title">About This Project</h1>
+        <p className="page-description">
+          Betta Blog is a small article site focused on beginner-friendly betta fish care. The goal is to make the basics easy to understand — from tank setup and feeding to spotting common health issues.
         </p>
-      </div>
+        <p className="page-description">
+          Each article is organized into short sections with images so you can skim quickly and still get practical, helpful tips.
+        </p>
 
-      <div className="grid-3">
-        <article className="card">
-          <h3>Purpose</h3>
-          <p>To practice creating multiple pages inside one React app using routing.</p>
-        </article>
-        <article className="card">
-          <h3>Approach</h3>
-          <p>Reusable components and layouts are used to make the structure more organized.</p>
-        </article>
-        <article className="card">
-          <h3>Outcome</h3>
-          <p>The final result is cleaner, easier to maintain, and more visually appealing.</p>
-        </article>
-      </div>
-    </section>
+        <div className="button-row">
+          <Button to="/articles">Go to Articles</Button>
+        </div>
+      </section>
+    </div>
   );
 };
 

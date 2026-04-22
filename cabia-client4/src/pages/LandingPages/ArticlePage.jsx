@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom';
-import { articles } from '../../assets/article-content';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
+import articles from '../../assets/article-content';
 
 const ArticlePage = () => {
   const { name } = useParams();
@@ -8,31 +8,69 @@ const ArticlePage = () => {
 
   if (!article) {
     return (
-      <section className="article-single">
-        <h1>Article not found</h1>
-        <p style={{ marginTop: '0.7rem', marginBottom: '1rem', color: '#6b7280' }}>
-          The requested article does not exist in the sample content.
-        </p>
-        <Link to="/articles"><Button>Back to Articles</Button></Link>
-      </section>
+      <div className="page">
+        <section className="section-card centered-card">
+          <h1 className="page-title">Article not found</h1>
+          <div className="button-row">
+            <Button to="/articles">Back to Articles</Button>
+          </div>
+        </section>
+      </div>
     );
   }
 
   return (
-    <section className="article-single">
-      <div className="page-heading">
-        <h1>{article.title}</h1>
-        <p>{article.excerpt}</p>
-      </div>
+    <div className="page">
+      <section className="section-card">
+        <div className="button-row">
+          <Button to="/articles">← Back to Articles</Button>
+        </div>
 
-      {article.content.split('\n\n').map((paragraph, index) => (
-        <p key={index}>{paragraph}</p>
-      ))}
+        <p className="eyebrow">Article</p>
+        <h1 className="page-title">{article.title}</h1>
+        <p className="slug-text">{article.name.split('-').join(' ')}</p>
+      </section>
 
-      <div style={{ marginTop: '1.25rem' }}>
-        <Link to="/articles"><Button variant="secondary">Back to Articles</Button></Link>
-      </div>
-    </section>
+      <section className="section-card article-content-box">
+        <div className="article-hero-image">
+          {article.heroImage ? (
+            <img
+              className="article-image"
+              src={article.heroImage}
+              alt={article.heroAlt ?? `${article.title} image`}
+              loading="lazy"
+            />
+          ) : (
+            <div className="image-placeholder large" />
+          )}
+        </div>
+
+        <div className="article-full-content">
+          {article.content.map((block, index) => {
+            if (typeof block === 'string') {
+              return <p key={index}>{block}</p>;
+            }
+
+            if (block?.type === 'image' && block.src) {
+              return (
+                <figure key={index} className="article-media">
+                  <img className="article-image" src={block.src} alt={block.alt ?? ''} loading="lazy" />
+                  {block.caption ? (
+                    <figcaption className="article-caption">{block.caption}</figcaption>
+                  ) : null}
+                </figure>
+              );
+            }
+
+            return null;
+          })}
+        </div>
+
+        <div className="button-row top-space">
+          <Button to="/articles">Back to Articles</Button>
+        </div>
+      </section>
+    </div>
   );
 };
 

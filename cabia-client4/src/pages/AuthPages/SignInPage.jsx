@@ -1,47 +1,40 @@
-import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const SignInPage = () => {
   return (
-    <section className="auth-card">
-      <h2>Log In</h2>
-      <p className="subtext">Access your account using the same clean layout and reusable components.</p>
+    <div className="page">
+      <section className="section-card auth-card">
+        <p className="eyebrow">Account</p>
+        <h1 className="page-title">Sign In</h1>
+        <p className="page-description">
+          Access your account using a simple form layout.
+        </p>
 
-      <form className="form-grid">
-        <div className="form-group">
-          <label htmlFor="signin-email">Email Address</label>
-          <input id="signin-email" type="email" placeholder="example@email.com" className="input" />
-        </div>
+        <form className="auth-form">
+          <div className="form-field">
+            <label className="form-label" htmlFor="signin-email">Email Address</label>
+            <input id="signin-email" type="email" placeholder="example@email.com" className="form-input" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="signin-password">Password</label>
-          <input id="signin-password" type="password" placeholder="Enter password" className="input" />
-          <p className="helper">It must be a combination of letters, numbers, and symbols.</p>
-        </div>
+          <div className="form-field">
+            <label className="form-label" htmlFor="signin-password">Password</label>
+            <input id="signin-password" type="password" placeholder="Enter password" className="form-input" />
+            <p className="form-helper">It must be a combination of letters, numbers, and symbols.</p>
+          </div>
 
-        <div className="row-between">
-          <label className="remember">
-            <input type="checkbox" />
-            <span>Remember me</span>
-          </label>
+          <div className="auth-actions">
+            <Button type="submit">Log In</Button>
+            <Button type="button" variant="secondary">Forgot Password?</Button>
+          </div>
+        </form>
 
-          <button type="button" style={{ background: 'none', border: 'none', color: '#1d4ed8', fontWeight: 700, cursor: 'pointer' }}>
-            Forgot Password?
-          </button>
-        </div>
-
-        <Button type="submit">Log In</Button>
-
-        <div className="alt-buttons">
-          <Button type="button" variant="secondary">Login with Google</Button>
-          <Button type="button" variant="secondary">Login with Apple</Button>
-        </div>
-      </form>
-
-      <p className="center-text" style={{ marginTop: '1rem' }}>
-        No account yet? <Link to="/auth/signup">Sign Up</Link>
-      </p>
-    </section>
+        <p className="auth-switch">
+          No account yet?{' '}
+          <Link className="auth-link" to="/auth/signup">Sign Up</Link>
+        </p>
+      </section>
+    </div>
   );
 };
 
