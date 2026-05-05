@@ -1,19 +1,83 @@
-import './App.css';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import AuthLayout from "./layouts/AuthLayout";
+import DashLayout from "./layouts/DashLayout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to My React App!</h1>
-        <p>
-          Name: Nash Daniel Cabia <br />
-          Email: cabianash@gmail.com <br />
-          Course: BSIT <br />
-          Section: INF231 <br />
-        </p>
-      </header>
-    </div>
-  );
-}
+import HomePage from "./pages/LandingPages/HomePage";
+import AboutPage from "./pages/LandingPages/AboutPage";
+import ArticleListPage from "./pages/LandingPages/ArticleListPage";
+import ArticlePage from "./pages/LandingPages/ArticlePage";
 
-export default App;
+import SignInPage from "./pages/AuthPages/SignInPage";
+import SignUpPage from "./pages/AuthPages/SignUpPage";
+
+import DashboardPage from "./pages/DashboardPages/DashboardPage";
+import ReportsPage from "./pages/DashboardPages/ReportsPage";
+import UsersPage from "./pages/DashboardPages/UsersPage";
+
+import NotFoundPage from "./pages/NotFoundPage";
+
+
+const routes = [
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "articles",
+        element: <ArticleListPage />,
+      },
+      {
+        path: "articles/:name",
+        element: <ArticlePage />,
+      },
+    ],
+  },
+  {
+    path: "auth/",
+    element: <AuthLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: "signin",
+        element: <SignInPage />,
+      },
+      {
+        path: "signup",
+        element: <SignUpPage />,
+      },
+    ],
+  },
+  {
+    path: "dashboard/",
+    element: <DashLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: "",
+        element: <DashboardPage />,
+      },
+      {
+        path: "reports",
+        element: <ReportsPage />,
+      },
+      {
+        path: "users",
+        element: <UsersPage />,
+      },
+    ],
+  },
+];
+
+const router = createBrowserRouter(routes);
+
+export default router;
