@@ -8,6 +8,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Chip from "@mui/material/Chip";
+import { useTheme } from "@mui/material/styles";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -126,22 +131,71 @@ export default function DashboardPage() {
         Users Overview
       </Typography>
 
-      <Box sx={{ height: 400, width: "100%", mb: 2 }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </Box>
+      <Stack direction={{ xs: "column", lg: "row" }} spacing={3}>
+        <Box sx={{ flex: 1 }}>
+          <Box sx={{ height: 400, width: "100%", mb: 2 }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
+                },
+              }}
+              pageSizeOptions={[5]}
+              checkboxSelection
+              disableRowSelectionOnClick
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ width: 320 }}>
+          {/* Use CSS variables from project theme for chip colors */}
+          {/* Fallback to theme palette if variables are not present */}
+          
+          
+          <Card sx={{ mb: 2 }}>
+            <CardContent>
+              <Typography variant="h6">Recent Activity</Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText primary="Jon created a new report" secondary="2 hours ago" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Cersei updated user role" secondary="Yesterday" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Daenerys exported CSV" secondary="3 days ago" />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Quick Status</Typography>
+              <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
+                <Chip
+                  label="Online: 12"
+                  sx={{ backgroundColor: "var(--accent, #7c3aed)", color: "var(--text, #fff)" }}
+                />
+
+                <Chip
+                  label="Invited: 4"
+                  sx={{ backgroundColor: "rgba(255,255,255,0.03)", color: "var(--muted)" }}
+                />
+
+                <Chip
+                  label="Disabled: 1"
+                  sx={{ backgroundColor: "rgba(255,255,255,0.02)", color: "var(--muted)" }}
+                />
+              </Stack>
+            </CardContent>
+          </Card>
+        </Box>
+      </Stack>
     </Box>
   );
 }
