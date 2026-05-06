@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": "28",
+    "gender": "male",
+    "contactNumber": "555-0101",
+    "email": "john.doe@example.com",
+    "role": "admin",
+    "username": "johndoe",
+    "password": "password123",
+    "address": "123 Main St, City",
+    "isActive": true
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "age": "32",
+    "gender": "female",
+    "contactNumber": "555-0102",
+    "email": "jane.smith@example.com",
+    "role": "editor",
+    "username": "janesmith",
+    "password": "password123",
+    "address": "456 Oak Ave, Town",
+    "isActive": true
+  },
+  {
+    "id": 3,
+    "firstName": "Bob",
+    "lastName": "Johnson",
+    "age": "25",
+    "gender": "male",
+    "contactNumber": "555-0103",
+    "email": "bob.johnson@example.com",
+    "role": "viewer",
+    "username": "bobjohnson",
+    "password": "password123",
+    "address": "789 Pine Rd, Village",
+    "isActive": false
+  }
+]

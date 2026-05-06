@@ -145,6 +145,19 @@ const UsersPage = () => {
     const contactNumber = form.contactNumber.trim();
     const password = form.password.trim();
 
+    const requiredMessages = {
+      firstName: "First name is required.",
+      lastName: "Last name is required.",
+      age: "Age must be a number only.",
+      gender: "Gender is required.",
+      contactNumber: "Contact number must be exactly 11 digits.",
+      email: "Email is required.",
+      role: "Role is required.",
+      username: "Username must not contain spaces.",
+      password: "Password must be at least 8 characters long.",
+      address: "Address is required.",
+    };
+
     // Required field validation
     [
       ["firstName", "First name"],
@@ -159,7 +172,7 @@ const UsersPage = () => {
       ["address", "Address"],
     ].forEach(([key, label]) => {
       if (!String(form[key]).trim()) {
-        nextErrors[key] = `${label} is required.`;
+        nextErrors[key] = requiredMessages[key] ?? `${label} is required.`;
       }
     });
 

@@ -1,3 +1,7 @@
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Gauge } from "@mui/x-charts/Gauge";
 import { PieChart } from "@mui/x-charts/PieChart";
@@ -8,6 +12,19 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+
+const mapCenter = [14.684253, 120.994314];
+
+const markerIcon = L.icon({
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -120,6 +137,44 @@ export default function DashboardPage() {
           height={250}
         />
       </Stack>
+
+      {/* Location Map */}
+      <Typography variant="h5" gutterBottom>
+        Location Map
+      </Typography>
+
+      <Card sx={{ mb: 4, overflow: "hidden" }}>
+        <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
+          <Box sx={{ flex: 1, minHeight: 320 }}>
+            <MapContainer
+              center={mapCenter}
+              zoom={17}
+              scrollWheelZoom={false}
+              style={{ height: "100%", minHeight: 320, width: "100%" }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={mapCenter} icon={markerIcon}>
+                <Popup>National University - Manila</Popup>
+              </Marker>
+            </MapContainer>
+          </Box>
+
+          <CardContent sx={{ minWidth: { md: 260 } }}>
+            <Typography variant="overline" color="primary">
+              Campus Location
+            </Typography>
+            <Typography variant="h5" sx={{ mb: 1 }}>
+              National University - Manila
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              551 M.F. Jhocson St, Sampaloc, Manila, Metro Manila
+            </Typography>
+          </CardContent>
+        </Stack>
+      </Card>
 
       {/* Data Grid */}
       <Typography variant="h5" gutterBottom>
