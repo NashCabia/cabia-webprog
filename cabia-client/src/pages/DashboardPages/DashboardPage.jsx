@@ -14,6 +14,10 @@ import ListItemText from "@mui/material/ListItemText";
 import Chip from "@mui/material/Chip";
 import { useTheme } from "@mui/material/styles";
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
@@ -57,6 +61,25 @@ const rows = [
   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
+
+// Location data
+const locationData = {
+  name: "National University-Manila",
+  lat: 14.684253,
+  lng: 120.994314,
+  address: "E-551 F Jhocson St, Sampaloc, Manila, 1088 Metro Manila",
+};
+
+// Fix for default marker icon in react-leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+});
 
 export default function DashboardPage() {
   const validAgeRows = rows.filter((row) => row.age !== null);
@@ -125,6 +148,40 @@ export default function DashboardPage() {
           height={250}
         />
       </Stack>
+
+      {/* Location Map */}
+      <Card sx={{ mb: 4 }}>
+        <CardContent>
+          <Typography variant="h6" gutterBottom>
+            Location Map
+          </Typography>
+          <Box
+            sx={{
+              height: 320,
+              borderRadius: 2,
+              overflow: "hidden",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <MapContainer
+              center={[locationData.lat, locationData.lng]}
+              zoom={13}
+              style={{ height: "100%", width: "100%" }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={[14.604253, 120.994314]}>
+                <Popup>
+                  National University-Manila <br />
+                  <p><i>551 F Jhocson St, Sampaloc, Manila 1008 Metro Manila</i></p>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </Box>
+        </CardContent>
+      </Card>
 
       {/* Data Grid */}
       <Typography variant="h5" gutterBottom>

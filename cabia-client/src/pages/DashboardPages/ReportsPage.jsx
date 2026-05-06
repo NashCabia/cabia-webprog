@@ -109,7 +109,7 @@ const ReportsPage = () => {
 
             body {
               margin: 0;
-              font-family: Arial, Helvetica, sans-serif;
+              font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
               background: var(--bg);
               color: var(--text);
             }
@@ -117,8 +117,8 @@ const ReportsPage = () => {
             .report-shell {
               padding: 28px;
               background:
-                radial-gradient(circle at top left, rgba(124, 58, 237, 0.16), transparent 28%),
-                linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+                radial-gradient(circle at top left, rgba(139, 92, 246, 0.2), transparent 28%),
+                linear-gradient(180deg, rgba(10, 14, 39, 0.98), rgba(15, 21, 53, 0.92));
               min-height: 100vh;
             }
 

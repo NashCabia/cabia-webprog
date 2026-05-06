@@ -143,8 +143,9 @@ const UsersPage = () => {
     const username = form.username.trim().toLowerCase();
     const age = form.age.trim();
     const contactNumber = form.contactNumber.trim();
-    const password = form.password;
+    const password = form.password.trim();
 
+    // Required field validation
     [
       ["firstName", "First name"],
       ["lastName", "Last name"],
@@ -162,8 +163,27 @@ const UsersPage = () => {
       }
     });
 
+    // Specific format validations - only if field has content
+    if (age && !/^\d+$/.test(age)) {
+      nextErrors.age = "Age must be a number only.";
+    }
+
+    if (contactNumber && !/^\d{11}$/.test(contactNumber)) {
+      nextErrors.contactNumber = "Contact number must be exactly 11 digits.";
+    }
+
+    if (password && password.length < 8) {
+      nextErrors.password = "Password must be at least 8 characters long.";
+    }
+
+    if (username && /\s/.test(username)) {
+      nextErrors.username = "Username must not contain spaces.";
+    }
+
+    // Email validation
     if (
       !nextErrors.email &&
+      email &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     ) {
       nextErrors.email = "Enter a valid email address.";
@@ -171,29 +191,16 @@ const UsersPage = () => {
 
     if (
       !nextErrors.email &&
+      email &&
       users.some((user) => user.id !== modal.id && user.email === email)
     ) {
       nextErrors.email = "Email address already exists.";
     }
 
-    if (!nextErrors.age && !/^\d+$/.test(age)) {
-      nextErrors.age = "Age must contain numbers only.";
-    }
-
-    if (!nextErrors.contactNumber && !/^\d{11}$/.test(contactNumber)) {
-      nextErrors.contactNumber = "Contact number must be exactly 11 digits.";
-    }
-
-    if (!nextErrors.password && password.length < 8) {
-      nextErrors.password = "Password must be at least 8 characters long.";
-    }
-
-    if (!nextErrors.username && /\s/.test(username)) {
-      nextErrors.username = "Username must not contain spaces.";
-    }
-
+    // Username duplicate check
     if (
       !nextErrors.username &&
+      username &&
       users.some((user) => user.id !== modal.id && user.username === username)
     ) {
       nextErrors.username = "Username already exists.";
