@@ -147,7 +147,7 @@ export default function DashboardPage() {
         <Stack direction={{ xs: "column", md: "row" }} spacing={0}>
           <Box sx={{ flex: 1, minHeight: 320 }}>
             <MapContainer
-              center={mapCenter}
+              center={[14.604253, 120.994314]}
               zoom={17}
               scrollWheelZoom={false}
               style={{ height: "100%", minHeight: 320, width: "100%" }}
@@ -156,7 +156,7 @@ export default function DashboardPage() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={mapCenter} icon={markerIcon}>
+              <Marker position={[14.604253, 120.994314]} icon={markerIcon}>
                 <Popup>National University - Manila</Popup>
               </Marker>
             </MapContainer>
