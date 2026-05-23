@@ -22,6 +22,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import ArticleIcon from "@mui/icons-material/Article";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
@@ -45,6 +46,12 @@ const dashboardNavItems = [
     to: "/dashboard/users",
     icon: PeopleIcon,
   },
+  {
+    label: "Articles",
+    title: "Articles",
+    to: "/dashboard/articles",
+    icon: ArticleIcon,
+  }
 ];
 
 const openedMixin = (theme) => ({

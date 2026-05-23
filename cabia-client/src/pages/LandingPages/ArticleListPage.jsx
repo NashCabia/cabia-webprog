@@ -1,8 +1,17 @@
+import { useEffect, useState } from 'react';
 import ArticleList from '../../components/ArticleList';
 import Button from '../../components/Button';
-import articles from '../../assets/article-content';
+import { getArticles, subscribe } from '../../services/articleService';
+
+const articlesInitial = getArticles();
 
 const ArticleListPage = () => {
+  const [articles, setArticles] = useState(articlesInitial);
+
+  useEffect(() => {
+    const unsub = subscribe(setArticles);
+    return () => unsub();
+  }, []);
   return (
     <div className="page">
       <section className="section-card">

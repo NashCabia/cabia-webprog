@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
-import articles from '../../assets/article-content';
+import { findByName } from '../../services/articleService';
 
 const ArticlePage = () => {
   const { name } = useParams();
-  const article = articles.find((item) => item.name === name);
+  const article = findByName(name);
 
   if (!article) {
     return (
