@@ -12,7 +12,15 @@ connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "cabia-webprog.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 console.log("User routes mounted at /api/users");
 app.use((req, res, next) => {
