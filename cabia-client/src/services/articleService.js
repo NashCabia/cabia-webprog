@@ -2,7 +2,7 @@ import axios from "axios";
 import assets from "../assets/article-content";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/articles",
+  baseURL: `${import.meta.env.VITE_API_URL}/articles`
 });
 
 let articles = [];

@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "cabia-webprog.vercel.app",
+      "https://cabia-webprog.vercel.app"
     ],
     credentials: true,
   })
