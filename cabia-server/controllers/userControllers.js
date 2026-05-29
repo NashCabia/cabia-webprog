@@ -17,10 +17,21 @@ const createUser = async (req, res) => {
       return res.status(400).json({ message: "Password is required" });
     }
 
+    const email = String(req.body.email || "").trim().toLowerCase();
+    const username = String(req.body.username || "").trim().toLowerCase();
+
+    if (!email || !username) {
+      return res
+        .status(400)
+        .json({ message: "Email and username are required" });
+    }
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const user = await User.create({
       ...req.body,
+      email,
+      username,
       password: hashedPassword,
     });
 
@@ -57,7 +68,12 @@ const deleteUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const email = String(req.body.email || "").trim().toLowerCase();
+    const password = req.body.password;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
 
     const user = await User.findOne({ email });
 

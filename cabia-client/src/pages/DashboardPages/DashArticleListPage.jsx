@@ -30,6 +30,8 @@ const DashArticleListPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(blankForm);
   const [errors, setErrors] = useState({});
+  const [saveError, setSaveError] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const filteredArticles = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -45,6 +47,7 @@ const DashArticleListPage = () => {
   const openModal = () => {
     setForm(blankForm);
     setErrors({});
+    setSaveError("");
     setModalOpen(true);
   };
 
@@ -52,6 +55,7 @@ const DashArticleListPage = () => {
     setModalOpen(false);
     setForm(blankForm);
     setErrors({});
+    setSaveError("");
   };
 
   const handleChange = (e) => {
@@ -61,7 +65,7 @@ const DashArticleListPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const nextErrors = {};
@@ -87,12 +91,26 @@ const DashArticleListPage = () => {
       description: form.description.trim(),
     };
 
-    addArticle(newArticle);
-    closeModal();
+    try {
+      setSaving(true);
+      setSaveError("");
+      await addArticle(newArticle);
+      closeModal();
+    } catch (error) {
+      setSaveError(
+        error?.response?.data?.message || "Unable to save article. Please try again."
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const deleteArticle = (id) => {
-    removeArticle(id);
+  const deleteArticle = async (id) => {
+    try {
+      await removeArticle(id);
+    } catch (error) {
+      alert(error?.response?.data?.message || "Unable to delete article.");
+    }
   };
 
   useEffect(() => {
@@ -207,6 +225,7 @@ const DashArticleListPage = () => {
 
           <DialogContent dividers>
             <Stack spacing={2} sx={{ pt: 1 }}>
+              {saveError ? <Alert severity="error">{saveError}</Alert> : null}
               <TextField
                 name="image"
                 label="Image URL"
@@ -241,9 +260,11 @@ const DashArticleListPage = () => {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={closeModal}>Cancel</Button>
-            <Button type="submit" variant="contained">
-              Save Article
+            <Button onClick={closeModal} disabled={saving}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained" disabled={saving}>
+              {saving ? "Saving..." : "Save Article"}
             </Button>
           </DialogActions>
         </Box>

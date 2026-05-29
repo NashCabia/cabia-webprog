@@ -183,6 +183,11 @@ const DashLayout = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("type");
+    localStorage.removeItem("user");
+    window.dispatchEvent(new Event("authChange"));
     navigate("/");
   };
 

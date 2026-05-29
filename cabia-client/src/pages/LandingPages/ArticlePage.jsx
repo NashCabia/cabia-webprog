@@ -1,10 +1,47 @@
-import { useParams } from 'react-router-dom';
-import Button from '../../components/Button';
-import { findByName } from '../../services/articleService';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Button from "../../components/Button";
+import { getArticleByName, subscribe } from "../../services/articleService";
 
 const ArticlePage = () => {
   const { name } = useParams();
-  const article = findByName(name);
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const load = async () => {
+      setLoading(true);
+      const result = await getArticleByName(name);
+      if (mounted) {
+        setArticle(result);
+        setLoading(false);
+      }
+    };
+
+    load();
+
+    const unsub = subscribe((items) => {
+      const next = items.find((item) => item.name === name) || null;
+      if (mounted) setArticle(next);
+    });
+
+    return () => {
+      mounted = false;
+      unsub();
+    };
+  }, [name]);
+
+  if (loading) {
+    return (
+      <div className="page">
+        <section className="section-card centered-card">
+          <h1 className="page-title">Loading article...</h1>
+        </section>
+      </div>
+    );
+  }
 
   if (!article) {
     return (

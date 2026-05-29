@@ -22,7 +22,10 @@ const SignInPage = () => {
     try {
       setLoading(true);
 
-      const response = await loginUser({ email, password });
+      const response = await loginUser({
+        email: email.trim().toLowerCase(),
+        password,
+      });
       const data = response.data;
 
       localStorage.setItem("token", data.token);
