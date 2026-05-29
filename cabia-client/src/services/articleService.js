@@ -1,9 +1,12 @@
 import axios from "axios";
 import assets from "../assets/article-content";
+import { API_URL } from "../constants";
 
-const API = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/articles`
+const articleApi = axios.create({
+  baseURL: `${API_URL}/articles`,
 });
+
+export default articleApi;
 
 let articles = [];
 let nextId = 1;
