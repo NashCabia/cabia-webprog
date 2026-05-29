@@ -12,12 +12,28 @@ connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://cabia-webprog.vercel.app",
+  process.env.CLIENT_URL,
+].filter(Boolean);
+
+const isOriginAllowed = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  return /^https:\/\/cabia-webprog-.*\.vercel\.app$/.test(origin);
+};
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://cabia-webprog.vercel.app"
-    ],
+    origin: (origin, callback) => {
+      if (isOriginAllowed(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
