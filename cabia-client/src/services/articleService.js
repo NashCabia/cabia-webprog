@@ -65,7 +65,7 @@ async function init() {
 
   initPromise = (async () => {
     try {
-      const response = await API.get("/");
+      const response = await articleApi.get("/");
       const serverArticles = response.data.map((item) => normalizeServer(item));
 
       articles = [
@@ -106,7 +106,7 @@ export async function addArticle(item) {
     content: Array.isArray(item.content) ? item.content : [],
   };
 
-  const response = await API.post("/", payload);
+ const response = await articleApi.post("/", payload);
   const article = normalizeServer(response.data);
 
   articles = [...articles, article];
@@ -120,7 +120,7 @@ export async function removeArticle(id) {
   const target = articles.find((article) => article.id === id || article._id === id);
 
   if (target?._id) {
-    await API.delete(`/${target._id}`);
+  await articleApi.delete(`/${target._id}`);
   }
 
   articles = articles.filter((article) => article.id !== id && article._id !== id);
