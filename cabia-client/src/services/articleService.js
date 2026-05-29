@@ -6,7 +6,6 @@ const articleApi = axios.create({
   baseURL: `${API_URL}/articles`,
 });
 
-export default articleApi;
 
 let articles = [];
 let nextId = 1;
