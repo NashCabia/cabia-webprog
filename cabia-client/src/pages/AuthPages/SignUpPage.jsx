@@ -23,20 +23,31 @@ const SignUpPage = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.debug("handleSubmit executed");
     e.preventDefault();
 
     setError("");
     setSuccess("");
 
     if (!name || !email || !password) {
+      console.debug("Validation failed: required fields", {
+        name: Boolean(name),
+        email: Boolean(email),
+        password: Boolean(password),
+      });
       setError("Please fill in all fields.");
       return;
     }
 
     if (password.length < 8) {
+      console.debug("Validation failed: password length", {
+        length: password.length,
+      });
       setError("Password must be at least 8 characters.");
       return;
     }
+
+    console.debug("Validation passed");
 
     const { firstName, lastName } = splitName(name);
 
@@ -57,6 +68,7 @@ const SignUpPage = () => {
     try {
       setLoading(true);
 
+      console.debug("Sending request to backend", payload);
       await createUser(payload);
 
       setSuccess("Account created! You can now sign in.");
@@ -68,6 +80,7 @@ const SignUpPage = () => {
         navigate("/auth/signin");
       }, 1000);
     } catch (err) {
+      console.debug("Register request failed", err);
       setError(
         err.response?.data?.message ||
           "Failed to create account. Please try again."
@@ -154,7 +167,11 @@ const SignUpPage = () => {
           )}
 
           <div className="auth-actions">
-            <Button type="submit" disabled={loading}>
+            <Button
+              type="submit"
+              disabled={loading}
+              onClick={() => console.debug("Register button clicked")}
+            >
               {loading ? "Creating..." : "Create Account"}
             </Button>
 
